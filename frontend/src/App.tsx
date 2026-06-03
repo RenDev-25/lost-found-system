@@ -1,21 +1,24 @@
-function App() {
+import { BrowserRouter } from 'react-router-dom';
+import { AppProvider } from './context/AppContext';
+import AppRoutes from './routes/AppRoutes';
+import Navbar from './components/layout/Navbar';
+import Footer from './components/layout/Footer';
+import Chatbot from './components/chatbot/Chatbot';
+import './styles/globals.css';
+
+export default function App() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center space-y-4">
-        <h1 className="text-3xl font-bold text-blue-600">
-          Lost & Found System
-        </h1>
-
-        <p className="text-gray-600">
-          Tailwind is now working properly 
-        </p>
-
-        <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-          Test Button
-        </button>
-      </div>
-    </div>
+    <AppProvider>
+      <BrowserRouter>
+        <div className="flex flex-col min-h-screen bg-gray-50">
+          <Navbar />
+          <main className="flex-grow">
+            <AppRoutes />
+          </main>
+          <Footer />
+          <Chatbot />
+        </div>
+      </BrowserRouter>
+    </AppProvider>
   );
 }
-
-export default App;
